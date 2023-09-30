@@ -272,6 +272,8 @@ Provide the following code (replace your token in the file):
 }
 ```
 
+We have automated this workaround with the following bash script [bin/generate_tfrc_credentials](bin/generate_tfrc_credentials)
+
 ## Issues with AWS credentials when saving state to Terraform Cloud
 
 Running `terraform plan` with the state configured to be saved on terraform cloud further requires `AWS credentials` to be configured as `environment variables` on terraform cloud.
