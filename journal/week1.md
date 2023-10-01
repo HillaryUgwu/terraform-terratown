@@ -130,3 +130,25 @@ variable "instance_types" {
 ```
 
 This variable instance_types is a list of strings, with a default value of `["t2.micro", "t2.small", "t2.medium"]`. This variable could be used in your Terraform configuration to specify the instance types for an AWS Auto Scaling group, for instance [upcloud.com](https://upcloud.com/resources/tutorials/terraform-variables).
+
+
+## Dealing With Configuration Drift
+
+## What happens if we lose our state file?
+
+If you lose your statefile, you most likley have to tear down all your cloud infrastructure manually.
+
+You can use terraform port but it won't for all cloud resources. You need check the terraform providers documentation for which resources support import.
+
+### Fix Missing Resources with Terraform Import
+
+`terraform import aws_s3_bucket.bucket bucket-name`
+
+[Terraform Import](https://developer.hashicorp.com/terraform/cli/import)
+[AWS S3 Bucket Import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
+
+### Fix Manual Configuration
+
+If someone goes and delete or modifies cloud resource manually through ClickOps. 
+
+If we run Terraform plan is with attempt to put our infrstraucture back into the expected state fixing Configuration Drift
