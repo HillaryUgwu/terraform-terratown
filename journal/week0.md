@@ -27,6 +27,7 @@
     + [Terraform State Files](#terraform-state-files)
     + [Terraform Directory](#terraform-directory)
 - [Issues with Terraform Cloud Login and Gitpod Workspace](#issues-with-terraform-cloud-login-and-gitpod-workspace)
+- [Issues with AWS credentials when saving state to Terraform Cloud](#issues-with-aws-credentials-when-saving-state-to-terraform-cloud)
 
 ## Semantic Versioning
 
@@ -35,11 +36,13 @@ This project is going utilize semantic versioning for its tagging.
 
 The general format:
 
- **MAJOR.MINOR.PATCH**, eg. `1.0.1`
+ **MAJOR.MINOR.PATCH**, eg. `v1.0.1`
 
 - **MAJOR** version when you make incompatible API changes
 - **MINOR** version when you add functionality in a backward compatible manner
 - **PATCH** version when you make backward compatible bug fixes
+Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+
 
 ## Install the Terraform CLI
 
@@ -199,7 +202,7 @@ If it is succesful you should see a json payload return that looks like this:
 {
     "UserId": "AIEAVUO15ZPVHJ5WIJ5KR",
     "Account": "123456789012",
-    "Arn": "arn:aws:iam::123456789012:user/terraform-beginner-bootcamp"
+    "Arn": "arn:aws:iam::123456789012:user/terraform-teratown-project"
 }
 ```
 
@@ -301,3 +304,26 @@ Provide the following code (replace your token in the file):
 
 We have automated this workaround with the following bash script [bin/generate_tfrc_credentials](bin/generate_tfrc_credentials)
 
+## Issues with AWS credentials when saving state to Terraform Cloud
+
+Running `terraform plan` with the state configured to be saved on terraform cloud further requires `AWS credentials` to be configured as `environment variables` on terraform cloud.
+
+I encountered the error below when I attempted this even though my aws credentials exist on my local workspace and are perfectly valid.
+
+```bash
+Error: No valid credential sources found
+│ 
+│   with provider["registry.terraform.io/hashicorp/aws"],
+│   on main.tf line 28, in provider "aws":
+│   28: provider "aws" {
+│ 
+│ Please see https://registry.terraform.io/providers/hashicorp/aws
+│ for more information about providing credentials.
+│ 
+│ Error: failed to refresh cached credentials, no EC2 IMDS role found,
+│ operation error ec2imds: GetMetadata, request canceled, context deadline
+│ exceeded
+│ 
+╵
+Operation failed: failed running terraform plan (exit 1)
+```
