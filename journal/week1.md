@@ -287,3 +287,94 @@ We use the jsonencode to create the json policy inline in the hcl.
 Plain data values such as Local Values and Input Variables don't have any side-effects to plan against and so they aren't valid in replace_triggered_by. You can use terraform_data's behavior of planning an action each time input changes to indirectly use a plain value to trigger replacement.
 
 https://developer.hashicorp.com/terraform/language/resources/terraform-data
+
+
+## Provisioners
+
+Provisioners allow you to execute commands on compute instances eg. a AWS CLI command.
+
+They are not recommended for use by Hashicorp because Configuration Management tools such as Ansible are a better fit, but the functionality exists.
+
+[Provisioners](https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax)
+
+### Local-exec
+
+This will execute command on the machine running the terraform commands eg. plan apply
+
+```tf
+resource "aws_instance" "web" {
+  # ...
+  provisioner "local-exec" {
+    command = "echo The server's IP address is ${self.private_ip}"
+  }
+}
+```
+
+https://developer.hashicorp.com/terraform/language/resources/provisioners/local-exec
+
+### Remote-exec
+
+This will execute commands on a machine which you target. You will need to provide credentials such as ssh to get into the machine.
+
+```tf
+resource "aws_instance" "web" {
+  # ...
+  # Establishes connection to be used by all
+  # generic remote provisioners (i.e. file/remote-exec)
+  connection {
+    type     = "ssh"
+    user     = "root"
+    password = var.root_password
+    host     = self.public_ip
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "puppet apply",
+      "consul join ${aws_instance.web.private_ip}",
+    ]
+  }
+}
+```
+https://developer.hashicorp.com/terraform/language/resources/provisioners/remote-exec
+
+
+## Herdoc
+
+A HereDoc, short for Here Document, is a type of redirection in Bash and other Unix-like operating systems that allows you to create a block of text that can be used as input to a command, or as part of a script. It's a multiline string or a file literal for sending input streams to other commands and programs [phoenixnap.com](https://phoenixnap.com/kb/bash-heredoctf).
+
+Basically, a heredoc is used for multiline commenting..
+
+Here's a basic example of a HereDoc:
+```bash
+cat << EOF
+Hello
+World
+EOF
+```
+
+In this example, `cat` is the command that reads the HereDoc and writes the contents to the terminal. The text between `EOF` markers is considered as the input to the `cat` command.
+
+HereDocs are particularly useful when you need to use multiple commands or lines of text as input to another command. For example, you can use a HereDoc to provide input to a command, assign a block of text to a variable, create a file with a block of text, or append a block of text to a file.
+
+Here's an example of using a HereDoc to assign a block of text to a variable:
+```bash
+variable=$(cat << crazy_file
+Hello
+World
+crazy_file
+)
+```
+
+In this example, the text between the `crazy_file` markers is assigned to the `variable`.
+
+HereDocs can also be used with SSH to execute multiple commands on a remote machine. Here's an example:
+```bash
+ssh username@host << ssh_multiline
+echo "Local user: $USER"
+echo "Remote user: \$USER"
+ssh_multiline
+```
+
+In this example, the `echo` commands are executed on the remote machine, and the output from the `echo` commands is printed to the console.
+
+It's important to note that when using a HereDoc, you should be careful to escape any special characters or variables that you don't want to be interpreted by the shell. You can do this by adding a backslash (`\`) before the character, or by enclosing the HereDoc in single quotes (`'`).
