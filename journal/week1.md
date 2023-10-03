@@ -149,6 +149,8 @@ terraform import aws_s3_bucket.bucket bucket-name
 When working with modules: 
 ```bash
 tf import module.terrahouse_aws.aws_s3_bucket.website_bucket tf-ohary-bucket-f360341c-994e-4bc0-bb9e-822df87902dc
+tf import module.terrahouse_aws.aws_clEIFGY8E8B76Y2ribution.s3_distribution EIFGY8E8B76Y2
+tf import module.terrahouse_aws.aws_cloudfront_origin_access_control.default E26TXKXYE54LJ9
 ```
 
 [Terraform Import](https://developer.hashicorp.com/terraform/cli/import)
@@ -378,3 +380,15 @@ ssh_multiline
 In this example, the `echo` commands are executed on the remote machine, and the output from the `echo` commands is printed to the console.
 
 It's important to note that when using a HereDoc, you should be careful to escape any special characters or variables that you don't want to be interpreted by the shell. You can do this by adding a backslash (`\`) before the character, or by enclosing the HereDoc in single quotes (`'`).
+
+## For Each Expressions
+
+For each allows us to enumerate over complex data types
+
+```sh
+[for s in var.list : upper(s)]
+```
+
+This is mostly useful when you are creating multiples of a cloud resource and you want to reduce the amount of repetitive terraform code.
+
+[For Each Expressions](https://developer.hashicorp.com/terraform/language/expressions/for)
