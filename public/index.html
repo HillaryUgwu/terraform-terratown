@@ -1,11 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello there Terraformers !!!!!!</title>
-</head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Evento | Free Onepage Event Template | ShapeBootstrap</title>
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+	<link href="assets/css/main.css" rel="stylesheet">
+	<link href="assets/css/animate.css" rel="stylesheet">
+	<link href="assets/css/responsive.css" rel="stylesheet">
+
+	<!--[if lt IE 9]>
+	    <script src="assets/js/html5shiv.js"></script>
+	    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+	<link rel="shortcut icon" href="assets/images/ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144"
+		href="assets/images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114"
+		href="assets/images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="assets/images/ico/apple-touch-icon-57-precomposed.png">
+	<script type="text/javascript">
+		function digitalWatch() {
+			var date = new Date();
+			var hours = date.getHours();
+			var minutes = date.getMinutes();
+			var seconds = date.getSeconds();
+			if (hours < 10) hours = "0" + hours;
+			if (minutes < 10) minutes = "0" + minutes;
+
+
+			document.getElementById("hours").innerHTML = hours;
+
+			document.getElementById("minutes").innerHTML = minutes;
+
+			document.getElementById("seconds").innerHTML = seconds;
+			setTimeout("digitalWatch()", 1000);
+		}
+	</script>
+</head><!--/head-->
+
 <body>
-    <h1>Hello Terraformers</h1>
+	<header id="header" role="banner">
+		<div class="main-nav">
+			<div class="container">
+				<div class="header-top">
+					<div class="pull-right social-icons">
+						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-google-plus"></i></a>
+						<a href="#"><i class="fa fa-youtube"></i></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="index.html">
+							<p class="TK">Техническая кибернетика</p>
+						</a>
+						<style type="text/css">
+							.TK {
+								font-family: Courier, monospace, sans-serif, Helvetica, Verdana, sans-serif;
+								/* Гарнитура шрифта */
+								font-size: 150%;
+								/* Размер текста */
+								font-weight: lighter;
+								/* Светлое начертание */
+								color: white;
+							}
+						</style>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="scroll active"><a href="#home">Вход</a></li>
+							<li class="scroll"><a href="#explore">Регистрация</a></li>
+							<li class="scroll"><a href="#event">Таблица успеваемостей</a></li>
+							<li class="scroll"><a href="#about">Информация о студентах</a></li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--/#header-->
+
+	<section id="home">
+		<div id="main-slider" class="carousel slide" data-ride="carousel">
+
+			<div class="carousel-inner">
+				<div class="item active">
+					<img class="img-responsive" src="assets/images/slider/bg2.jpg" alt="slider">
+					<div class="carousel-caption">
+						<h2>0</h2>
+						<h4>Дней до сессии</h4>
+						<a href="http://www.bstu.ru/static/themes/bstu/schedule/index.php?gid=4818&">Расписание
+							экзаменов <i class="fa fa-angle-right"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--/#home-->
+
+	<section id="explore">
+		<div class="container">
+			<div class="row">
+				<div class="watch">
+					<img class="img-responsive" src="assets/images/watch.png" alt="">
+				</div>
+				<div class="col-md-4 col-md-offset-2 col-sm-5">
+					<h2>Знает каждый пионер сила тока у на эр</h2>
+				</div>
+
+				<body onload="digitalWatch()">
+					<div class="col-sm-7 col-md-6">
+						<ul id="countdown">
+
+							<li>
+								<span id="hours" class="hours time-font"></span>
+								<p class="">hours </p>
+							</li>
+							<li>
+								<span id="minutes" class="minutes time-font"></span>
+								<p class="">minutes</p>
+							</li>
+							<li>
+								<span id="seconds" class="seconds time-font"></span>
+								<p class="">seconds</p>
+							</li>
+						</ul>
+					</div>
+			</div>
 </body>
+<div class="cart">
+	<a href="#"><i class="fa fa-shopping-cart"></i> <span>Purchase Tickets</span></a>
+</div>
+</div>
+</section><!--/#explore-->
+
+
+
+<script type="text/javascript" src="assets/js/jquery.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="assets/js/gmaps.js"></script>
+<script type="text/javascript" src="assets/js/smoothscroll.js"></script>
+<script type="text/javascript" src="assets/js/jquery.parallax.js"></script>
+<script type="text/javascript" src="assets/js/coundown-timer.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.js"></script>
+<script type="text/javascript" src="assets/js/jquery.nav.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
+</body>
+
 </html>

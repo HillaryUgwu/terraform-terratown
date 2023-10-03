@@ -2,4 +2,5 @@ user_uuid="f360341c-994e-4bc0-bb9e-822df87902dc"
 bucket_name="tf-ohary-bucket-f360341c-994e-4bc0-bb9e-822df87902dc"
 index_html_filepath="/workspace/terraform-beginner-bootcamp-2023/public/index.html"
 error_html_filepath="/workspace/terraform-beginner-bootcamp-2023/public/error.html"
+assets_path="/workspace/terraform-beginner-bootcamp-2023/public/assets"
 content_version=1
