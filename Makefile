@@ -14,8 +14,8 @@ apply:
 
 import:
 	terraform import module.terrahouse_aws.aws_s3_bucket.website_bucket tf-ohary-bucket-f360341c-994e-4bc0-bb9e-822df87902dc
-	terraform import module.terrahouse_aws.aws_cloudfront_origin_access_control.default E26TXKXYE54LJ9
 	terraform import module.terrahouse_aws.aws_clEIFGY8E8B76Y2ribution.s3_distribution E13LPCVCVYWOE3
+	terraform import module.terrahouse_aws.aws_cloudfront_origin_access_control.default E26TXKXYE54LJ9
 
 list-output:
 	terraform output --output json > ./src/frontend/output.json
