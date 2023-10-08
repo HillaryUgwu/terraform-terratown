@@ -14,7 +14,7 @@ apply:
 
 import:
 	terraform import module.terrahouse_aws.aws_s3_bucket.website_bucket tf-ohary-bucket-f360341c-994e-4bc0-bb9e-822df87902dc
-	terraform import module.terrahouse_aws.aws_cloudfront_distribution.s3_distribution E13LPCVCVYWOE3
+	terraform import module.terrahouse_aws.aws_cloudfront_distribution.s3_distribution E1BHRJ2ZR4C5NA
 	terraform import module.terrahouse_aws.aws_cloudfront_origin_access_control.default E26TXKXYE54LJ9
 
 list-output:
