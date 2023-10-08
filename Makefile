@@ -1,4 +1,4 @@
-.PHONY: build deploy-infra list-output deploy-site sync-bucket teardown all empty-bucket kill-stack
+.PHONY: build deploy-infra list-output deploy-site sync-bucket teardown all empty-bucket destroy
 
 init:
 	terraform init
@@ -34,10 +34,10 @@ invoke-remote:
 empty-bucket:
 	aws s3 rm s3://cv.ohary37.com --recursive
 
-kill-stack:
-	terraform delete --auto-approve
+destroy:
+	terraform destroy --auto-approve
 
-teardown: empty-bucket kill-stack
+teardown: empty-bucket destroy
 
 all: build deploy-infra deploy-site
 
