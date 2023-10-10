@@ -1,4 +1,6 @@
-.PHONY: build deploy-infra list-output deploy-site sync-bucket teardown all empty-bucket destroy
+.PHONY: build deploy-infra list-output deploy-site sync-bucket teardown all empty-bucket delete
+
+Bucket_Name = terraform-20231010203005868300000001
 
 init:
 	terraform init
@@ -13,31 +15,25 @@ apply:
 	terraform apply --auto-approve
 
 import:
-	terraform import module.terrahouse_aws.aws_s3_bucket.website_bucket tf-ohary-bucket-f360341c-994e-4bc0-bb9e-822df87902dc
-	terraform import module.terrahouse_aws.aws_cloudfront_distribution.s3_distribution E1BHRJ2ZR4C5NA
+	terraform import module.terrahouse_aws.aws_s3_bucket.website_bucket $(Bucket_Name)
+	terraform import module.terrahouse_aws.aws_cloudfront_distribution.s3_distribution E13LPCVCVYWOE3
 	terraform import module.terrahouse_aws.aws_cloudfront_origin_access_control.default E26TXKXYE54LJ9
 
 list-output:
 	terraform output --output json > ./src/frontend/output.json
 
 sync-bucket:
-	aws s3 sync ./src/frontend s3://cv.ohary37.com
+	aws s3 sync ./public s3://$(Bucket_Name)
 
 deploy-site: list-output sync-bucket
 
-invoke-local:
-	sam build && sam local invoke countFunction
-
-invoke-remote:
-	sam build && sam remote invoke countFunction
-
 empty-bucket:
-	aws s3 rm s3://cv.ohary37.com --recursive
+	aws s3 rm s3://$(Bucket_Name) --recursive
 
-destroy:
+delete:
 	terraform destroy --auto-approve
 
-teardown: empty-bucket destroy
+destroy: empty-bucket delete
 
 all: build deploy-infra deploy-site
 
