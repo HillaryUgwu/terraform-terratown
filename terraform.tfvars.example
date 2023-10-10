@@ -1,6 +1,9 @@
 terratowns_endpoint="https://terratowns.cloud/api"
-bucket_name="tf-ohary-bucket-f360341c-994e-4bc0-bb9e-822df87902dc"
-index_html_filepath="/workspace/terraform-beginner-bootcamp-2023/public/index.html"
-error_html_filepath="/workspace/terraform-beginner-bootcamp-2023/public/error.html"
-assets_path="/workspace/terraform-beginner-bootcamp-2023/public/assets/"
-content_version=1
+egusi = {
+  public_path = "/workspace/terraform-beginner-bootcamp-2023/public/egusi"
+  content_version = 1 
+}
+fancycars = {
+  public_path = "/workspace/terraform-beginner-bootcamp-2023/public/fancycars"
+  content_version = 1 
+}

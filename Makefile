@@ -1,6 +1,6 @@
-.PHONY: build deploy-infra list-output deploy-site sync-bucket teardown all empty-bucket destroy
+.PHONY: build deploy-infra list-output deploy-site sync-bucket teardown all empty-bucket delete
 
-Bucket_Name = tf-ohary-bucket-f360341c-994e-4bc0-bb9e-822df87902dc
+Bucket_Name = terraform-20231010203005868300000001
 
 init:
 	terraform init
@@ -30,10 +30,10 @@ deploy-site: list-output sync-bucket
 empty-bucket:
 	aws s3 rm s3://$(Bucket_Name) --recursive
 
-destroy:
+delete:
 	terraform destroy --auto-approve
 
-teardown: empty-bucket destroy
+destroy: empty-bucket delete
 
 all: build deploy-infra deploy-site
 

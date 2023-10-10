@@ -29,25 +29,46 @@ provider "terratowns" {
   token = var.terratowns_access_token
 }
 
-module "terrahouse_aws" {
-  source = "./modules/terrahouse_aws"
+module "home_fancycars_hosting" {
+  source = "./modules/terrahome_aws"
   user_uuid = var.teacherseat_user_uuid
-  index_html_filepath = var.index_html_filepath
-  error_html_filepath = var.error_html_filepath
-  content_version = var.content_version
-  assets_path = var.assets_path
+  public_path = var.fancycars.public_path
+  content_version = var.fancycars.content_version
 }
 
-resource "terratowns_home" "home" {
-  name = "How to play Arcanum in 2023"
+resource "terratowns_home" "home_fancycars" {
+  name = "Best Luxury Cars in 2023"
   description = <<DESCRIPTION
-Arcanum is a game from 2001 that shipped with alot of bugs.
-Modders have removed all the originals making this game really fun
-to play (despite that old look graphics). This is my guide that will
-show you how to play arcanum without spoiling the plot.
+A luxury car is a car that provides above-average 
+to high-end levels of comfort, features, and equipment. 
+These vehicles are designed with an emphasis on comfort, 
+style, and performance, often featuring advanced technology 
+and high-quality materials. They are typically associated with 
+wealth and status, and are often a symbol of success and power.
 DESCRIPTION
-  # domain_name = module.terrahouse_aws.cloudfront_url
-  domain_name = "3fdq3321gz.cloudfront.net"
+  domain_name = module.home_fancycars_hosting.domain_name
   town = "missingo"
-  content_version = 1
+  content_version = var.fancycars.content_version
+}
+
+module "home_egusi_hosting" {
+  source = "./modules/terrahome_aws"
+  user_uuid = var.teacherseat_user_uuid
+  public_path = var.egusi.public_path
+  content_version = var.egusi.content_version
+}
+
+resource "terratowns_home" "home_egusi" {
+  name = "Making your delicious Egusi Soup"
+  description = <<DESCRIPTION
+Egusi soup, a traditional Nigerian soup, is a hearty 
+and nutritious dish that is a staple in many Nigerian households.
+The soup is often served with a variety of ingredients, including meat, 
+seafood, or vegetables, depending on the region and the individual's preference. 
+Egusi soup is not just a meal, but a cultural dish that brings people together. 
+It's a testament to the creativity and resourcefulness of Nigerian cuisine.
+DESCRIPTION
+  domain_name = module.home_egusi_hosting.domain_name
+  town = "missingo"
+  content_version = var.egusi.content_version
 }
