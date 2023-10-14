@@ -257,7 +257,7 @@ h2 {
   bottom: 0%;
   float: left;
   left: 0;
-  margin: 30%;
+  margin: 17%;
   opacity: 0.5;
   padding: 0%;
   right: inherit;
@@ -275,6 +275,7 @@ h2 {
 }
 
 #main-slider .carousel-caption h3 {
+  font-size: 30px;
   text-align: center;
   font-weight: bold;
 
@@ -324,7 +325,7 @@ h2 {
 
 #explore {
   background-color: #C34C39;
-  background-image: url("../images/event-bg.jpg");
+  background-image: url("../images/event-bg.png");
   background-position: center bottom;
   background-size: contain;
   background-repeat: no-repeat;
@@ -340,7 +341,7 @@ h2 {
 }
 
 #explore h2 {
-  font-size: 35px;
+  font-size: 30px;
   text-transform: uppercase;
   text-align: center;
 }
