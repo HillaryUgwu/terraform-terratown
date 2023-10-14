@@ -29,27 +29,27 @@ provider "terratowns" {
   token = var.terratowns_access_token
 }
 
-module "home_fancycars_hosting" {
-  source = "./modules/terrahome_aws"
-  user_uuid = var.teacherseat_user_uuid
-  public_path = var.fancycars.public_path
-  content_version = var.fancycars.content_version
-}
+# module "home_fancycars_hosting" {
+#   source = "./modules/terrahome_aws"
+#   user_uuid = var.teacherseat_user_uuid
+#   public_path = var.fancycars.public_path
+#   content_version = var.fancycars.content_version
+# }
 
-resource "terratowns_home" "home_fancycars" {
-  name = "Best Luxury Cars in 2023"
-  description = <<DESCRIPTION
-A luxury car is a car that provides above-average 
-to high-end levels of comfort, features, and equipment. 
-These vehicles are designed with an emphasis on comfort, 
-style, and performance, often featuring advanced technology 
-and high-quality materials. They are typically associated with 
-wealth and status, and are often a symbol of success and power.
-DESCRIPTION
-  domain_name = module.home_fancycars_hosting.domain_name
-  town = "missingo"
-  content_version = var.fancycars.content_version
-}
+# resource "terratowns_home" "home_fancycars" {
+#   name = "Best Luxury Cars in 2023"
+#   description = <<DESCRIPTION
+# A luxury car is a car that provides above-average 
+# to high-end levels of comfort, features, and equipment. 
+# These vehicles are designed with an emphasis on comfort, 
+# style, and performance, often featuring advanced technology 
+# and high-quality materials. They are typically associated with 
+# wealth and status, and are often a symbol of success and power.
+# DESCRIPTION
+#   domain_name = module.home_fancycars_hosting.domain_name
+#   town = "missingo"
+#   content_version = var.fancycars.content_version
+# }
 
 module "home_egusi_hosting" {
   source = "./modules/terrahome_aws"

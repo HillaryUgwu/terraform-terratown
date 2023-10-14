@@ -1,6 +1,6 @@
-.PHONY: build deploy-infra list-output deploy-site sync-bucket teardown all empty-bucket delete
+.PHONY: init deploy apply list-output deploy-site sync-bucket teardown all empty-bucket delete
 
-Bucket_Name = terraform-20231010203005868300000001
+Bucket_Name = terraform-20231013232020640000000001
 
 init:
 	terraform init
@@ -13,6 +13,8 @@ plan:
 
 apply:
 	terraform apply --auto-approve
+
+deploy: init apply
 
 import:
 	terraform import module.terrahouse_aws.aws_s3_bucket.website_bucket $(Bucket_Name)

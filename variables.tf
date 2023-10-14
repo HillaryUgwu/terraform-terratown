@@ -17,9 +17,9 @@ variable "egusi" {
   })
 }
 
-variable "fancycars" {
-  type = object({
-    public_path = string
-    content_version = number
-  })
-}
+# variable "fancycars" {
+#   type = object({
+#     public_path = string
+#     content_version = number
+#   })
+# }

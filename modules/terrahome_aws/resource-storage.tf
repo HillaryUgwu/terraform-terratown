@@ -1,3 +1,9 @@
+locals {
+  # website_files = fileset("${var.public_path}/assets","*.{jpg,png,gif}")
+  website_files = fileset("${var.public_path}/assets","**")
+  mime_types = jsondecode(file("${var.public_path}/mime.json"))
+}
+
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket
 resource "aws_s3_bucket" "website_bucket" {
   # Bucket Naming Rules
@@ -38,8 +44,7 @@ resource "aws_s3_object" "index_html" {
 }
 
 resource "aws_s3_object" "upload_assets" {
-  # for_each = fileset("${var.public_path}/assets","*.{jpg,png,gif}")
-  for_each = fileset("${var.public_path}/assets","**")
+  for_each = local.website_files
   bucket = aws_s3_bucket.website_bucket.bucket
   key    = "assets/${each.key}"
   source = "${var.public_path}/assets/${each.key}"
@@ -48,6 +53,13 @@ resource "aws_s3_object" "upload_assets" {
     replace_triggered_by = [terraform_data.content_version.output]
     ignore_changes = [etag]
   }
+
+  content_type = lookup(local.mime_types, regex("\\.[^.]+$", each.key), null)
+  # content_type = each.key == ".css" ? "text/css" : null
+  # metadata = each.key == ".css" ? { "Content-Type" = "text/css" } : null
+  # content_type = each.key == "css" ? "text/css" : each.key == "js" ? "text/javascript" : each.key == "png" ? "image/png" : null
+
+  # metadata = each.key == "css" ? { "Content-Type" = "text/css" } : each.key == "js" ? { "Content-Type" = "text/javascript" } : each.key == "png" ? { "Content-Type" = "image/png" } : null
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object
