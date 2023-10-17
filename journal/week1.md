@@ -340,7 +340,7 @@ resource "aws_instance" "web" {
 https://developer.hashicorp.com/terraform/language/resources/provisioners/remote-exec
 
 
-## Herdoc
+## Heredoc
 
 A HereDoc, short for Here Document, is a type of redirection in Bash and other Unix-like operating systems that allows you to create a block of text that can be used as input to a command, or as part of a script. It's a multiline string or a file literal for sending input streams to other commands and programs [phoenixnap.com](https://phoenixnap.com/kb/bash-heredoctf).
 
